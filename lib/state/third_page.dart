@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'keranjang_provider.dart';
-import 'third_page.dart';
 import 'wishlist_provider.dart';
 
-class SecondState extends StatefulWidget {
-  SecondState({super.key});
+class ThirdState extends StatefulWidget {
+  ThirdState({super.key});
 
   @override
-  State<SecondState> createState() => _SecondStateState();
+  State<ThirdState> createState() => _ThirdStateState();
 }
 
-class _SecondStateState extends State<SecondState> {
+class _ThirdStateState extends State<ThirdState> {
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +38,6 @@ class _SecondStateState extends State<SecondState> {
                   return Text("Jumlah item wishlist ${counterProvider.wishlistCount}");
                 },
               ),
-
               ElevatedButton(
                   onPressed: () {
                     context.read<WishlistProvider>().increment();
@@ -50,16 +48,6 @@ class _SecondStateState extends State<SecondState> {
                   onPressed: () => Navigator.pop(context),
                   child: const Text("Kembali")),
 
-              ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ThirdState()
-                      ),
-                    );
-                  },
-                  child: const Text("Pindah halaman tiga"))
             ],
           ),
         )

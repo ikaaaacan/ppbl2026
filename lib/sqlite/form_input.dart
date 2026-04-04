@@ -5,7 +5,6 @@ import 'read_data.dart';
 
 class InputBuku extends StatelessWidget {
 
-
   InputBuku({super.key});
 
   final TextEditingController _namaBukuController = TextEditingController();
@@ -38,11 +37,12 @@ class InputBuku extends StatelessWidget {
                     nama_buku: _namaBukuController.text,
                     isbn: int.parse(_isbnController.text),
                   );
-                  BukuQueryHandler().tambahBuku(buku);
+
+                  BukuQueryHandler()
+                      .tambahBuku(_namaBukuController.text, int.parse(_isbnController.text));
 
                   _namaBukuController.clear();
                   _isbnController.clear();
-
                 },
                 child: Text("Simpan Buku")
             ),

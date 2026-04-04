@@ -1,3 +1,4 @@
+// Data Access Object (DAO)
 class Buku {
   final int? bukuid;
   final String nama_buku;

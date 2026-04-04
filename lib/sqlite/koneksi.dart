@@ -58,16 +58,24 @@ class BukuQueryHandler{
   Future<Database> database() async {
     return openDb();
   }
-
-  Future<int> tambahBuku(Buku buku) async{
+  // function tambahBuku($nama_buku, $isbn)
+  //{
+   //  mysqli_query($conn, "INSERT INTO buku (nama_buku, isbn) VALUES ('$nama_buku', $isbn)")
+  // }
+  Future<int> tambahBuku(String nama_buku, int isbn) async{
     final db = await database();
-    final id = await db.insert('buku', buku.toJson());
+    //"INSERT INTO buku (nama_buku, isbn) VALUES ('$nama_buku', $isbn)"
+    final id = await db.rawInsert(
+      'INSERT INTO buku (nama_buku, isbn) VALUES (?, ?)',
+      [nama_buku, isbn]
+    );
     return id;
   }
 
   Future<List<Buku>> ambilSemuaBuku() async{
     final db = await database();
-    final List<Map<String, dynamic>> maps = await db.query('buku');
+    final List<Map<String, dynamic>> maps = await db.rawQuery('SELECT * FROM buku');
+
     return List.generate(maps.length, (i){
       return Buku.fromJson(maps[i]);
     });
@@ -76,11 +84,9 @@ class BukuQueryHandler{
   Future<int> updateBuku(Buku buku) async {
     final db = await database();
 
-    final result = await db.update(
-      'buku',
-      buku.toJson(),
-      where: 'bukuid = ?',
-      whereArgs: [buku.bukuid],
+    final result = await db.rawUpdate(
+      'UPDATE buku SET nama_buku = ?, isbn = ? WHERE bukuid = ?',
+      [buku.nama_buku, buku.isbn, buku.bukuid],
     );
 
     return result;

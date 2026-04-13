@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'buku.dart';
 import 'koneksi.dart';
 
-class ListBuku extends StatefulWidget {
-  const ListBuku({super.key});
+class ListSaham extends StatefulWidget {
+  const ListSaham({super.key});
 
   @override
-  State<ListBuku> createState() => _ListBukuState();
+  State<ListSaham> createState() => _ListSahamState();
 }
 
-class _ListBukuState extends State<ListBuku> {
+class _ListSahamState extends State<ListSaham> {
   List<Saham> daftarSaham = [];
 
   @override
@@ -45,6 +45,7 @@ class _ListBukuState extends State<ListBuku> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        // Kolom kiri: ticker
                         Text(
                           saham.ticker,
                           style: const TextStyle(
@@ -52,6 +53,7 @@ class _ListBukuState extends State<ListBuku> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
+                        // Kolom kanan: detail harga
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [

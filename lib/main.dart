@@ -1,5 +1,9 @@
+import 'dart:io' show Platform;
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
-import 'package:ppbl2026/chart/bar_chart_example.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+import 'package:sqflite_common_ffi_web/sqflite_ffi_web.dart';
+import 'package:sqflite/sqflite.dart';
 import 'package:ppbl2026/chart/line_chart_example.dart';
 import 'package:ppbl2026/chart/pie_chart_example.dart';
 import 'package:ppbl2026/chart/scatter_chart_example.dart';
@@ -13,8 +17,14 @@ import 'package:ppbl2026/state/wishlist_provider.dart';
 import 'chart/area_chart_example.dart';
 import 'chart/radar_chart_example.dart';
 
-
 void main() {
+  if (kIsWeb) {
+    databaseFactory = databaseFactoryFfiWeb;
+  } else if (Platform.isWindows || Platform.isLinux) {
+    sqfliteFfiInit();
+    databaseFactory = databaseFactoryFfi;
+  }
+
   runApp(
     MultiProvider(
       providers: [
@@ -25,6 +35,5 @@ void main() {
         home: InputBuku(),
       ), // The widget tree that needs access to the providers
     ),
-
   );
 }

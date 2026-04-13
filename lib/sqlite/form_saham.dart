@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'koneksi.dart';
 import 'list_saham.dart';
 
-class InputBuku extends StatelessWidget {
-
-  InputBuku({super.key});
+class InputSaham extends StatelessWidget {
+  InputSaham({super.key});
 
   final TextEditingController _tickerController = TextEditingController();
   final TextEditingController _openController = TextEditingController();
@@ -25,22 +24,30 @@ class InputBuku extends StatelessWidget {
             children: [
               TextField(
                 controller: _tickerController,
-                decoration: const InputDecoration(labelText: 'Ticker (kode saham)'),
+                decoration: const InputDecoration(
+                  labelText: 'Ticker (kode saham)',
+                ),
               ),
               TextField(
                 controller: _openController,
                 keyboardType: TextInputType.number,
-                decoration: const InputDecoration(labelText: 'Open (harga pembukaan)'),
+                decoration: const InputDecoration(
+                  labelText: 'Open (harga pembukaan)',
+                ),
               ),
               TextField(
                 controller: _highController,
                 keyboardType: TextInputType.number,
-                decoration: const InputDecoration(labelText: 'High (harga tertinggi)'),
+                decoration: const InputDecoration(
+                  labelText: 'High (harga tertinggi)',
+                ),
               ),
               TextField(
                 controller: _lastController,
                 keyboardType: TextInputType.number,
-                decoration: const InputDecoration(labelText: 'Last (harga terbaru)'),
+                decoration: const InputDecoration(
+                  labelText: 'Last (harga terbaru)',
+                ),
               ),
               TextField(
                 controller: _changeController,
@@ -48,7 +55,9 @@ class InputBuku extends StatelessWidget {
                   decimal: true,
                   signed: true,
                 ),
-                decoration: const InputDecoration(labelText: 'Change (% perubahan)'),
+                decoration: const InputDecoration(
+                  labelText: 'Change (% perubahan)',
+                ),
               ),
               const SizedBox(height: 16),
               TextButton(
